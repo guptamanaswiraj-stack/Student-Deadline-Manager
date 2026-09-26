@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Deadline Manager</title>
+  <meta name="description" content="Never miss an important deadline.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ ONE-TIME LOGIN SCREEN ============ -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-card">
+      <div class="logo-big">📚</div>
+      <h1>Student Deadline Manager</h1>
+      <p class="tagline">Never miss an important deadline.</p>
+      <form id="login-form">
+        <input type="text" id="login-name" placeholder="What's your name?" required maxlength="30">
+        <button type="submit" class="btn btn-primary btn-block">Start Managing →</button>
+      </form>
+      <p class="login-hint">🔒 We remember you on this device — no password needed.</p>
+    </div>
+  </div>
+
+  <!-- ============ MAIN APP ============ -->
+  <div id="app-screen" class="app-screen hidden">
+
+    <header class="app-header">
+      <div class="brand"><span class="logo">📚</span> Student Deadline Manager</div>
+
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-target="dashboard">Dashboard</button>
+        <button class="nav-tab" data-target="deadlines">Deadlines</button>
+        <button class="nav-tab" data-target="smart">Smart Extraction</button>
+      </nav>
+
+      <div class="user-chip">
+        <span id="user-name">Student</span>
+        <button id="change-user" class="change-user" title="Change user">↺</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+
+      <!-- ======== PAGE 1: DASHBOARD ======== -->
+      <section id="dashboard" class="page active">
+        <div class="page-heading">
+          <h2 id="greeting">Welcome!</h2>
+          <p class="muted">Here is your deadline overview.</p>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue">📅</div>
+            <div><span class="stat-number" id="stat-upcoming">0</span><span class="stat-label">Upcoming Deadlines</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon amber">⚠️</div>
+            <div><span class="stat-number" id="stat-duesoon">0</span><span class="stat-label">Due Soon (3 days)</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✅</div>
+            <div><span class="stat-number" id="stat-completed">0</span><span class="stat-label">Completed</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon violet">⏭️</div>
+            <div><span class="stat-number stat-text" id="stat-next">—</span><span class="stat-label" id="stat-next-label">Next Deadline</span></div>
+          </div>
+        </div>
+
+        <div class="dashboard-lower">
+          <!-- Reminders -->
+          <div class="panel">
+            <h3>🔔 Reminders</h3>
+            <ul id="reminder-list" class="reminder-list"></ul>
+          </div>
+          <!-- Next deadline detail -->
+          <div class="panel">
+            <h3>🎯 Next Up</h3>
+            <div id="next-deadline"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== PAGE 2: DEADLINES ======== -->
+      <section id="deadlines" class="page">
+        <div class="page-heading">
+          <h2>My Deadlines</h2>
+          <p class="muted">Add, track and manage everything in one place.</p>
+        </div>
+
+        <div class="deadlines-layout">
+          <!-- Add form -->
+          <aside class="panel add-panel">
+            <h3>➕ Add Deadline</h3>
+            <form id="deadline-form">
+              <label>Title
+                <input type="text" id="f-title" placeholder="e.g. C Programming Assignment" required maxlength="80">
+              </label>
+              <label>Date
+                <input type="date" id="f-date" required>
+              </label>
+              <label>Category
+                <select id="f-category">
+                  <option>Assignment</option>
+                  <option>Exam</option>
+                  <option>Registration</option>
+                  <option>Event</option>
+                  <option>Project</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>Description <span class="optional">(optional)</span>
+                <textarea id="f-desc" rows="3" placeholder="Any extra details..." maxlength="200"></textarea>
+              </label>
+              <button type="submit" class="btn btn-primary btn-block">Add Deadline</button>
+            </form>
+          </aside>
+
+          <!-- List area -->
+          <div class="list-area">
+            <div class="controls">
+              <input type="search" id="search-input" placeholder="🔍 Search by title...">
+              <select id="filter-category">
+                <option value="All">All Categories</option>
+                <option>Assignment</option>
+                <option>Exam</option>
+                <option>Registration</option>
+                <option>Event</option>
+                <option>Project</option>
+                <option>Other</option>
+              </select>
+              <select id="filter-status">
+                <option value="All">All Statuses</option>
+                <option>Upcoming</option>
+                <option>Due Soon</option>
+                <option>Due Today</option>
+                <option>Overdue</option>
+                <option>Completed</option>
+              </select>
+            </div>
+
+            <div id="deadline-list" class="deadline-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== PAGE 3: SMART EXTRACTION ======== -->
+      <section id="smart" class="page">
+        <div class="page-heading">
+          <h2>✨ Smart Deadline Extraction</h2>
+          <p class="muted">Paste any announcement, WhatsApp message or notice — we find the dates and categories for you.</p>
+        </div>
+
+        <div class="panel smart-panel">
+          <textarea id="extract-input" rows="7" placeholder="Paste your announcement here...&#10;&#10;Example:&#10;The C Programming assignment must be submitted by September 28.&#10;The Mathematics internal examination will be held on September 30.&#10;Hackathon registration closes on October 2."></textarea>
+          <button id="extract-btn" class="btn btn-primary">Extract Deadlines ✨</button>
+
+          <div id="extract-results"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">Built with ❤️ using HTML, CSS &amp; Vanilla JavaScript</footer>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

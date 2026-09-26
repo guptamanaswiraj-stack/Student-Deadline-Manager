@@ -1,0 +1,375 @@
+/* =========================================================
+   Student Deadline Manager - style.css
+   Simple, clean, student-friendly design
+   ========================================================= */
+
+/* ----- Color variables (change these to re-theme the app) ----- */
+:root {
+  --primary: #5b5bd6;
+  --primary-dark: #4646b8;
+  --bg: #f4f5fb;
+  --card: #ffffff;
+  --text: #22223b;
+  --muted: #6b6b85;
+  --border: #e6e6f0;
+  --green: #16a34a;
+  --amber: #d97706;
+  --red: #dc2626;
+  --blue: #2563eb;
+  --orange: #ea580c;
+  --violet: #7c3aed;
+  --radius: 16px;
+  --shadow: 0 4px 16px rgba(34, 34, 59, 0.08);
+}
+
+/* ----- Base ----- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+.optional { font-weight: 400; font-size: 0.8em; color: var(--muted); }
+
+/* ----- Buttons ----- */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-block { width: 100%; }
+
+/* ============ LOGIN SCREEN ============ */
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6a6ae0 0%, #9b5de5 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  padding: 44px 36px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.logo-big { font-size: 3rem; }
+.login-card h1 { font-size: 1.5rem; margin: 8px 0 4px; }
+.tagline { color: var(--muted); margin-bottom: 26px; }
+
+.login-card input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-bottom: 14px;
+}
+.login-card input:focus { outline: none; border-color: var(--primary); }
+
+.login-hint { font-size: 0.8rem; color: var(--muted); margin-top: 16px; }
+
+/* ============ HEADER / NAV ============ */
+.app-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+.brand { font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+.logo { font-size: 1.3rem; }
+
+.nav-tabs { display: flex; gap: 6px; flex: 1; flex-wrap: wrap; }
+
+.nav-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+.nav-tab:hover { background: var(--bg); color: var(--text); }
+.nav-tab.active { background: var(--primary); color: #fff; }
+
+.user-chip {
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 6px 8px 6px 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.change-user {
+  border: none;
+  background: var(--card);
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* ============ LAYOUT ============ */
+.main-content { max-width: 1150px; margin: 0 auto; padding: 30px 22px 50px; }
+
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.page-heading { margin-bottom: 24px; }
+.page-heading h2 { font-size: 1.6rem; }
+
+/* ============ PANELS & CARDS ============ */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+.panel h3 { margin-bottom: 16px; font-size: 1.05rem; }
+
+/* ----- Stat cards ----- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.stat-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.stat-icon.blue   { background: #e0eaff; }
+.stat-icon.amber  { background: #fdf0d9; }
+.stat-icon.green  { background: #dcf5e4; }
+.stat-icon.violet { background: #ece4fd; }
+
+.stat-number { display: block; font-size: 1.7rem; font-weight: 800; line-height: 1.1; }
+.stat-number.stat-text { font-size: 1.05rem; }
+.stat-label { font-size: 0.82rem; color: var(--muted); font-weight: 600; }
+
+/* ----- Dashboard lower section ----- */
+.dashboard-lower {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+}
+
+.reminder-list { list-style: none; }
+.reminder-list li {
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  background: var(--bg);
+}
+.reminder-list li.warn { background: #fdf0d9; color: #8a5a00; }
+.reminder-list li.urgent { background: #fde3e3; color: #9b1c1c; font-weight: 600; }
+
+.next-deadline-card { padding: 6px 2px; }
+.next-deadline-card .big-date { font-size: 1.4rem; font-weight: 800; }
+
+.empty-state { text-align: center; color: var(--muted); padding: 26px 10px; font-size: 0.95rem; }
+.link-btn {
+  background: none; border: none; color: var(--primary);
+  font-family: inherit; font-weight: 700; cursor: pointer; font-size: inherit;
+}
+
+/* ============ DEADLINES PAGE ============ */
+.deadlines-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.add-panel label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 12px; }
+.add-panel input, .add-panel select, .add-panel textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.92rem;
+}
+.add-panel input:focus, .add-panel select:focus, .add-panel textarea:focus {
+  outline: none; border-color: var(--primary);
+}
+
+.controls { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.controls input, .controls select {
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: #fff;
+}
+.controls input { flex: 1; min-width: 180px; }
+.controls input:focus, .controls select:focus { outline: none; border-color: var(--primary); }
+
+/* ----- Deadline cards ----- */
+.deadline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 16px;
+}
+
+.deadline-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--blue);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.deadline-card.status-due-soon { border-left-color: var(--amber); }
+.deadline-card.status-due-today { border-left-color: var(--orange); }
+.deadline-card.status-overdue { border-left-color: var(--red); }
+.deadline-card.status-completed { border-left-color: var(--green); opacity: 0.8; }
+
+.card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.badge-cat { background: #eceafe; color: var(--primary-dark); }
+
+.status-upcoming   { background: #e0eaff; color: var(--blue); }
+.status-due-soon   { background: #fdf0d9; color: var(--amber); }
+.status-due-today  { background: #ffe8d9; color: var(--orange); }
+.status-overdue    { background: #fde3e3; color: var(--red); }
+.status-completed  { background: #dcf5e4; color: var(--green); }
+
+.deadline-card h3 { font-size: 1.05rem; }
+.deadline-card .due { font-size: 0.9rem; color: var(--muted); }
+.deadline-card .countdown { font-size: 0.88rem; font-weight: 700; }
+.deadline-card .desc { font-size: 0.85rem; color: var(--muted); }
+.deadline-card.completed h3 { text-decoration: line-through; }
+
+.card-actions { display: flex; gap: 8px; margin-top: auto; padding-top: 8px; }
+.action-btn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.action-btn.complete { background: #dcf5e4; color: var(--green); }
+.action-btn.delete { background: #fde3e3; color: var(--red); }
+.action-btn:hover { filter: brightness(0.95); }
+
+/* ============ SMART EXTRACTION ============ */
+.smart-panel textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+  margin-bottom: 14px;
+}
+.smart-panel textarea:focus { outline: none; border-color: var(--primary); }
+
+.extract-result {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 12px;
+}
+.extract-result .er-title { font-weight: 700; flex: 1; min-width: 180px; }
+.extract-result .er-date { color: var(--muted); font-size: 0.9rem; }
+.extract-result .btn { padding: 8px 16px; font-size: 0.85rem; }
+.extract-note { font-size: 0.8rem; color: var(--muted); margin-top: 14px; }
+
+/* ============ TOAST ============ */
+.toast {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  animation: fadeIn 0.2s ease;
+  z-index: 100;
+}
+
+.app-footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 20px; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 860px) {
+  .dashboard-lower { grid-template-columns: 1fr; }
+  .deadlines-layout { grid-template-columns: 1fr; }
+  .app-header { padding: 12px 16px; gap: 10px; }
+  .brand { font-size: 0.95rem; }
+}
